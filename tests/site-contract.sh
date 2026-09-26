@@ -49,7 +49,7 @@ HUGO_CACHEDIR="$cache_dir" hugo \
   --contentDir "$site_root/tests/fixtures/content" \
   --destination "$output_dir" \
   --environment production \
-  --baseURL "https://lucifergene.github.io/engineering-blog/" \
+  --baseURL "https://lucifergene.github.io/systems-in-practice/" \
   --gc \
   --minify
 
@@ -62,11 +62,11 @@ assert_contains "$home_page" "Architecture, debugging, and hard-earned lessons f
 assert_contains "$home_page" "avik-eiffel"
 assert_contains "$home_page" "Portrait of the author"
 assert_contains "$home_page" "Recent Posts"
-assert_contains "$home_page" "/engineering-blog/posts/"
+assert_contains "$home_page" "/systems-in-practice/posts/"
 assert_contains "$home_page" "https://avikkundu.com"
 assert_contains "$home_page" "Featured Build Article"
 assert_contains "$home_page" "Archive Build Article"
-assert_contains "$home_page" "/engineering-blog/posts/featured-build-article/"
+assert_contains "$home_page" "/systems-in-practice/posts/featured-build-article/"
 assert_not_contains "$home_page" "Draft Build Article"
 assert_not_contains "$home_page" "All articles"
 
@@ -76,4 +76,4 @@ sitemap="$output_dir/sitemap.xml"
 test -f "$canonical_page"
 assert_contains "$canonical_page" '<link rel=canonical href=https://example.com/original-article>'
 assert_count "$canonical_page" 'rel=canonical' 1
-assert_not_contains "$sitemap" "/engineering-blog/posts/canonical-mirror-article/"
+assert_not_contains "$sitemap" "/systems-in-practice/posts/canonical-mirror-article/"

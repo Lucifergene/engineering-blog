@@ -31,13 +31,13 @@ hugo --gc --minify
 Pushes to `main` build and deploy to GitHub Pages. Pull requests run the same site-contract check and production build without deploying. The initial site address is:
 
 ```text
-https://lucifergene.github.io/engineering-blog/
+https://lucifergene.github.io/systems-in-practice/
 ```
 
 The theme is a pinned Git submodule. Clone this repository with the theme present:
 
 ```bash
-git clone --recurse-submodules https://github.com/Lucifergene/engineering-blog.git
+git clone --recurse-submodules https://github.com/Lucifergene/systems-in-practice.git
 ```
 
 To intentionally update the theme, check its release notes, update the submodule, run the verification commands above, and commit the changed gitlink.

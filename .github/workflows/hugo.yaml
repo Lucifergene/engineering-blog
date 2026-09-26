@@ -46,6 +46,7 @@ jobs:
           mkdir -p "${RUNNER_TEMP}/hugo"
           tar --extract --gzip --file "${RUNNER_TEMP}/${archive}" --directory "${RUNNER_TEMP}/hugo"
           echo "${RUNNER_TEMP}/hugo" >> "$GITHUB_PATH"
+          export PATH="${RUNNER_TEMP}/hugo:$PATH"
           hugo version
 
       - name: Verify site contract

@@ -1,4 +1,4 @@
-baseURL = "https://lucifergene.github.io/engineering-blog/"
+baseURL = "https://lucifergene.github.io/systems-in-practice/"
 locale = "en-us"
 defaultContentLanguage = "en"
 title = "Systems in Practice"

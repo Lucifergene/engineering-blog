@@ -1,6 +1,6 @@
 baseURL = "https://lucifergene.github.io/engineering-blog/"
 locale = "en-us"
-title = "Engineering Notes"
+title = "Engineering Deep-Dives"
 theme = "hugo-blog-awesome"
 enableRobotsTXT = true
 
@@ -18,8 +18,8 @@ enableRobotsTXT = true
     ordered = false
 
 [params]
-  sitename = "Engineering Notes"
-  description = "Practical notes on building engineering projects."
+  sitename = "Engineering Deep-Dives"
+  description = "Architecture, debugging, and hard-earned lessons from the systems I build."
   defaultColor = "auto"
   mainSections = ["posts"]
   toc = true
@@ -29,8 +29,8 @@ enableRobotsTXT = true
   rssFeedDescription = "summary"
 
   [params.webmanifest]
-    name = "Engineering Notes"
-    short_name = "Engineering Notes"
+    name = "Engineering Deep-Dives"
+    short_name = "Engineering Deep-Dives"
     theme_color = "#434648"
     background_color = "#ffffff"
     display = "standalone"

@@ -15,6 +15,23 @@
     {{- partial "header.html" . -}}
     <div class="wrapper">
         <main aria-label="Content">
+            {{- $page := . -}}
+            {{- with resources.Get "images/avik-eiffel.jpg" }}
+            {{- $portrait1x := .Fill "140x140 center webp" -}}
+            {{- $portrait2x := .Fill "280x280 center webp" -}}
+            {{- $portrait3x := .Fill "420x420 center webp" -}}
+            <section class="author" aria-labelledby="site-title">
+                <img
+                    class="author-avatar"
+                    src="{{ $portrait1x.RelPermalink }}"
+                    srcset="{{ $portrait2x.RelPermalink }} 2x, {{ $portrait3x.RelPermalink }} 3x"
+                    alt="Portrait of the author"
+                    width="{{ $portrait1x.Width }}"
+                    height="{{ $portrait1x.Height }}" />
+                <h1 id="site-title" class="author-name">{{ $page.Site.Title }}</h1>
+                <p class="author-bio">{{ $page.Site.Params.description }}</p>
+            </section>
+            {{- end }}
             {{- $pages := where .Site.RegularPages "Type" "in" site.Params.mainSections -}}
             {{- $posts := $pages.ByDate.Reverse -}}
             {{- $featuredPosts := where $posts "Params.featured" true -}}

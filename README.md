@@ -1,4 +1,4 @@
-# Engineering Notes
+# Engineering Deep-Dives
 
 A Markdown-first engineering blog built with Hugo and the pinned [Hugo Blog Awesome](https://github.com/hugo-sid/hugo-blog-awesome) theme. It publishes through GitHub Pages with no Node.js, CMS, database, analytics service, or third-party host.
 

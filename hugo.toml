@@ -1,5 +1,6 @@
 baseURL = "https://lucifergene.github.io/engineering-blog/"
 locale = "en-us"
+defaultContentLanguage = "en"
 title = "Systems in Practice"
 theme = "hugo-blog-awesome"
 enableRobotsTXT = true
@@ -20,7 +21,7 @@ enableRobotsTXT = true
 [params]
   sitename = "Systems in Practice"
   description = "Architecture, debugging, and hard-earned lessons from the systems I build."
-  defaultColor = "auto"
+  defaultColor = "dark"
   mainSections = ["posts"]
   toc = true
   tocOpen = false
@@ -28,9 +29,31 @@ enableRobotsTXT = true
   dateFormat = "2 Jan 2006"
   rssFeedDescription = "summary"
 
+  [params.author]
+    avatar = "images/avik-eiffel.jpg"
+    name = "Portrait of the author"
+    intro = "Systems in Practice"
+    description = "Architecture, debugging, and hard-earned lessons from the systems I build."
+
   [params.webmanifest]
     name = "Systems in Practice"
     short_name = "Systems in Practice"
     theme_color = "#434648"
     background_color = "#ffffff"
     display = "standalone"
+
+[menus]
+  [[menus.main]]
+    name = "Home"
+    pageRef = "/"
+    weight = 10
+
+  [[menus.main]]
+    name = "Posts"
+    pageRef = "/posts"
+    weight = 20
+
+  [[menus.main]]
+    name = "About"
+    url = "https://avikkundu.com"
+    weight = 30

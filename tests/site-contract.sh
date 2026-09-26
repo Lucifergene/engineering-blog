@@ -48,22 +48,11 @@ assert_contains "$home_page" "Systems in Practice"
 assert_contains "$home_page" "Architecture, debugging, and hard-earned lessons from the systems I build."
 assert_contains "$home_page" "avik-eiffel"
 assert_contains "$home_page" "Portrait of the author"
+assert_contains "$home_page" "Recent Posts"
+assert_contains "$home_page" "/engineering-blog/posts/"
+assert_contains "$home_page" "https://avikkundu.com"
 assert_contains "$home_page" "Featured Build Article"
 assert_contains "$home_page" "Archive Build Article"
 assert_contains "$home_page" "/engineering-blog/posts/featured-build-article/"
 assert_not_contains "$home_page" "Draft Build Article"
-
-featured_count="$(awk -v needle='Featured Build Article' '
-  {
-    line = $0
-    while ((position = index(line, needle)) > 0) {
-      count++
-      line = substr(line, position + length(needle))
-    }
-  }
-  END { print count + 0 }
-' "$home_page")"
-if [[ "$featured_count" -lt 2 ]]; then
-  echo "Expected the featured article in both featured and archive sections" >&2
-  exit 1
-fi
+assert_not_contains "$home_page" "All articles"

@@ -44,7 +44,7 @@ home_page="$output_dir/index.html"
 
 test -f "$home_page"
 test -f "$output_dir/index.xml"
-assert_contains "$home_page" "Engineering Deep-Dives"
+assert_contains "$home_page" "Systems in Practice"
 assert_contains "$home_page" "Architecture, debugging, and hard-earned lessons from the systems I build."
 assert_contains "$home_page" "avik-eiffel"
 assert_contains "$home_page" "Portrait of the author"

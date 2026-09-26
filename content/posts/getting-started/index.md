@@ -1,5 +1,5 @@
 ---
-title: "Getting started with Engineering Deep-Dives"
+title: "Getting started with Systems in Practice"
 date: 2026-09-26T00:00:00+05:30
 description: "A private starter article showing the post format."
 draft: true

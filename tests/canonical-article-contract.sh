@@ -57,25 +57,18 @@ article_page="$article_dir/index.html"
 sitemap="$output_dir/sitemap.xml"
 
 test -f "$article_page"
-test -s "$article_dir/cover.png"
-test -s "$article_dir/sentinel-success.png"
-test -s "$article_dir/sentinel-failure.png"
-assert_contains "$article_page" '<link rel=canonical href=https://developers.redhat.com/articles/2026/05/27/how-we-built-integration-testing-fast-moving-ai-backend>'
+test ! -e "$article_dir/cover.png"
+test ! -e "$article_dir/sentinel-success.png"
+test ! -e "$article_dir/sentinel-failure.png"
+assert_contains "$article_page" '<link rel=canonical href=https://lucifergene.github.io/engineering-blog/posts/how-we-built-integration-testing-for-fast-moving-ai-backend/>'
 assert_count "$article_page" 'rel=canonical' 1
-assert_contains "$article_page" 'Originally published on'
-assert_contains "$article_page" 'https://developers.redhat.com/articles/2026/05/27/how-we-built-integration-testing-fast-moving-ai-backend'
-assert_contains "$article_page" 'alt="Featured image for Red Hat OpenShift AI."'
+assert_contains "$article_page" '<meta name=robots content="noindex,follow">'
 assert_contains "$article_page" '"name":"Avik Kundu"'
-assert_contains "$article_page" '"mainEntityOfPage":"https://developers.redhat.com/articles/2026/05/27/how-we-built-integration-testing-fast-moving-ai-backend"'
-assert_contains "$article_page" '"url":"https://lucifergene.github.io/engineering-blog/posts/how-we-built-integration-testing-for-fast-moving-ai-backend/cover.png"'
+assert_contains "$article_page" '"mainEntityOfPage":"https://lucifergene.github.io/engineering-blog/posts/how-we-built-integration-testing-for-fast-moving-ai-backend/"'
 assert_contains "$article_page" 'How do you keep your backend compatible with an upstream dependency that changes its API every week?'
 assert_contains "$article_page" 'The problem: Our mocks were lying to us'
 assert_contains "$article_page" 'LlamaStack Compatibility Sentinel'
-assert_contains "$article_page" 'A Slack notification showing a successful verification from LlamaStack Compatibility Sentinel.'
-assert_contains "$article_page" 'A Slack notification showing a failed verification from LlamaStack Compatibility Sentinel.'
-assert_contains "$article_page" 'Figure 1: This is the workflow with successful verification.'
-assert_contains "$article_page" 'Figure 2: This is the workflow with failed verification.'
-assert_contains "$article_page" 'sentinel-success.png'
-assert_contains "$article_page" 'sentinel-failure.png'
-assert_not_contains "$article_page" 'developers.redhat.com/sites/default/files'
+assert_not_contains "$article_page" 'Red Hat'
+assert_not_contains "$article_page" 'redhat.com'
+assert_not_contains "$article_page" 'OpenShift'
 assert_not_contains "$sitemap" '/engineering-blog/posts/how-we-built-integration-testing-for-fast-moving-ai-backend/'

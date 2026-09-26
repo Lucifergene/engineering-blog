@@ -1,21 +1,15 @@
 ---
 title: "How we built integration testing for fast-moving AI backend"
 date: 2026-05-27T00:00:00+05:30
-description: "How an OpenShift AI backend team replaced deceptive mocks with real, record-replay integration tests and a daily compatibility sentinel."
+description: "How a backend team replaced deceptive mocks with real, record-replay integration tests and a daily compatibility sentinel."
 featured: true
 author: "Avik Kundu"
-canonicalURL: "https://developers.redhat.com/articles/2026/05/27/how-we-built-integration-testing-fast-moving-ai-backend"
-images:
-  - cover.png
+noindex: true
 ---
-
-> Originally published on [Red Hat Developer](https://developers.redhat.com/articles/2026/05/27/how-we-built-integration-testing-fast-moving-ai-backend).
-
-![Featured image for Red Hat OpenShift AI.](cover.png)
 
 How do you keep your backend compatible with an upstream dependency that changes its API every week? And how do you do it without spending a dollar on large language model (LLM) calls?
 
-That was our problem on [Red Hat OpenShift AI](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai), where our Go backend integrates with [Llama Stack](https://github.com/meta-llama/llama-stack). We replaced our mocked unit tests with a real Llama Stack server, used its built-in record-replay to avoid LLM costs and wired a daily Slack sentinel that notifies us before our users do.
+That was our problem, where our Go backend integrates with [Llama Stack](https://github.com/meta-llama/llama-stack). We replaced our mocked unit tests with a real Llama Stack server, used its built-in record-replay to avoid LLM costs and wired a daily Slack sentinel that notifies us before our users do.
 
 ## The problem: Our mocks were lying to us
 
@@ -186,16 +180,6 @@ This two-phase approach was the key design insight. Most days, stable and dev pa
 
 The notification script computes an overall status and sends a JSON payload to a Slack Workflow Builder webhook. We chose Workflow Builder over a custom Slack app because it's simpler to set up and doesn't require app approval from the workspace admins. Figure 1 shows what the team sees in their Slack channel every morning.
 
-![A Slack notification showing a successful verification from LlamaStack Compatibility Sentinel.](sentinel-success.png)
-
-*Figure 1: This is the workflow with successful verification.*
-
-Figure 2 shows the Slack message when things break.
-
-![A Slack notification showing a failed verification from LlamaStack Compatibility Sentinel.](sentinel-failure.png)
-
-*Figure 2: This is the workflow with failed verification.*
-
 We named it LlamaStack Compatibility Sentinel. Every day, it tells us exactly where we stand.
 
 ## What the Sentinel caught in practice
@@ -246,4 +230,4 @@ That's the whole point, not perfection, but early visibility. The kind of visibi
 
 ## Learn more
 
-Get started with [Red Hat OpenShift AI](https://www.redhat.com/en/technologies/cloud-computing/openshift/openshift-ai) or try it in the [Developer Sandbox](https://developers.redhat.com/developer-sandbox). The OpenShift AI platform hosts Gen AI Studio. You can find the [test infrastructure](https://github.com/opendatahub-io/odh-dashboard) under `packages/gen-ai/bff/`. Review the [Llama-stack](https://github.com/llamastack/llama-stack) upstream project, including the record-replay system. Get familiar with the [Red Hat AI](https://www.redhat.com/en/technologies/ai) portfolio.
+You can find the [test infrastructure](https://github.com/opendatahub-io/odh-dashboard) under `packages/gen-ai/bff/`. Review the [Llama-stack](https://github.com/llamastack/llama-stack) upstream project, including the record-replay system.

@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml">
   {{ range .Data.Pages }}
-    {{ if and .Permalink (not .Params.canonicalURL) }}
+    {{ if and .Permalink (not .Params.canonicalURL) (not .Params.noindex) }}
       <url>
         <loc>{{ .Permalink }}</loc>
         {{ with .Lastmod }}<lastmod>{{ .Format "2006-01-02T15:04:05-07:00" }}</lastmod>{{ end }}

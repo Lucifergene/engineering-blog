@@ -31,6 +31,19 @@ assert_not_contains() {
   fi
 }
 
+assert_count() {
+  local file="$1"
+  local expected="$2"
+  local count="$3"
+  local actual
+  actual="$(grep -Foc "$expected" "$file" || true)"
+
+  if [[ "$actual" != "$count" ]]; then
+    echo "Expected '$expected' $count time(s) in $file, found $actual" >&2
+    exit 1
+  fi
+}
+
 HUGO_CACHEDIR="$cache_dir" hugo \
   --source "$site_root" \
   --contentDir "$site_root/tests/fixtures/content" \
@@ -56,3 +69,11 @@ assert_contains "$home_page" "Archive Build Article"
 assert_contains "$home_page" "/engineering-blog/posts/featured-build-article/"
 assert_not_contains "$home_page" "Draft Build Article"
 assert_not_contains "$home_page" "All articles"
+
+canonical_page="$output_dir/posts/canonical-mirror-article/index.html"
+sitemap="$output_dir/sitemap.xml"
+
+test -f "$canonical_page"
+assert_contains "$canonical_page" '<link rel=canonical href=https://example.com/original-article>'
+assert_count "$canonical_page" 'rel=canonical' 1
+assert_not_contains "$sitemap" "/engineering-blog/posts/canonical-mirror-article/"

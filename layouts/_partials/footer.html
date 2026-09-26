@@ -1,0 +1,9 @@
+<footer class="footer">
+    <small class="footer_copyright">© {{ now.Format "2006" }} Engineering Notes.</small>
+</footer>
+
+{{- if .Site.Params.goToTop -}}
+<a href="#" title="Go to top" id="totop">
+    {{ partial "svgs/arrowUp.svg" (dict "height" 48 "width" 48) . }}
+</a>
+{{- end -}}

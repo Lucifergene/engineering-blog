@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+{{- $defaultColor := .Site.Params.defaultColor | default "auto" -}}
+{{- if eq $defaultColor "dark" -}}
+<html lang="{{ .Site.Language.Locale }}" class="dark">
+{{- else if eq $defaultColor "light" -}}
+<html lang="{{ .Site.Language.Locale }}" class="light">
+{{- else -}}
+<html lang="{{ .Site.Language.Locale }}">
+{{- end -}}
+
+{{- partial "head.html" . -}}
+
+<body data-theme="{{ $defaultColor }}" class="notransition">
+    {{- partial "scriptsBodyStart.html" . -}}
+    {{- partial "header.html" . -}}
+    <div class="wrapper">
+        <main aria-label="Content">
+            {{- $pages := where .Site.RegularPages "Type" "in" site.Params.mainSections -}}
+            {{- $posts := $pages.ByDate.Reverse -}}
+            {{- $featuredPosts := where $posts "Params.featured" true -}}
+
+            {{- with $featuredPosts }}
+            <section aria-labelledby="featured-posts">
+                <h3 id="featured-posts" class="posts-item-note">Featured</h3>
+                {{- range . }}
+                {{ partial "postCard" . }}
+                {{- end }}
+            </section>
+            {{- end }}
+
+            <section aria-labelledby="all-posts">
+                <h3 id="all-posts" class="posts-item-note">All articles</h3>
+                {{- $paginator := .Paginate $posts -}}
+                {{- range $paginator.Pages }}
+                {{ partial "postCard" . }}
+                {{- end }}
+                {{ template "_internal/pagination.html" . }}
+            </section>
+        </main>
+    </div>
+    {{- partial "footer.html" . -}}
+    {{- partial "scriptsBodyEnd.html" . -}}
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+baseURL = "https://lucifergene.github.io/engineering-blog/"
+locale = "en-us"
+title = "Engineering Notes"
+theme = "hugo-blog-awesome"
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 20
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 4
+    ordered = false
+
+[params]
+  sitename = "Engineering Notes"
+  description = "Practical notes on building engineering projects."
+  defaultColor = "auto"
+  mainSections = ["posts"]
+  toc = true
+  tocOpen = false
+  goToTop = true
+  dateFormat = "2 Jan 2006"
+  rssFeedDescription = "summary"
+
+  [params.webmanifest]
+    name = "Engineering Notes"
+    short_name = "Engineering Notes"
+    theme_color = "#434648"
+    background_color = "#ffffff"
+    display = "standalone"

@@ -15,7 +15,7 @@ assert_contains() {
   local file="$1"
   local expected="$2"
 
-  if ! rg -F --quiet "$expected" "$file"; then
+  if ! grep -Fq "$expected" "$file"; then
     echo "Expected '$expected' in $file" >&2
     exit 1
   fi
@@ -25,7 +25,7 @@ assert_not_contains() {
   local file="$1"
   local unexpected="$2"
 
-  if rg -F --quiet "$unexpected" "$file"; then
+  if grep -Fq "$unexpected" "$file"; then
     echo "Did not expect '$unexpected' in $file" >&2
     exit 1
   fi
@@ -50,7 +50,16 @@ assert_contains "$home_page" "Archive Build Article"
 assert_contains "$home_page" "/engineering-blog/posts/featured-build-article/"
 assert_not_contains "$home_page" "Draft Build Article"
 
-featured_count="$(rg -o -F 'Featured Build Article' "$home_page" | wc -l | tr -d ' ')"
+featured_count="$(awk -v needle='Featured Build Article' '
+  {
+    line = $0
+    while ((position = index(line, needle)) > 0) {
+      count++
+      line = substr(line, position + length(needle))
+    }
+  }
+  END { print count + 0 }
+' "$home_page")"
 if [[ "$featured_count" -lt 2 ]]; then
   echo "Expected the featured article in both featured and archive sections" >&2
   exit 1

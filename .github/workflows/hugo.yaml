@@ -50,7 +50,10 @@ jobs:
           hugo version
 
       - name: Verify site contract
-        run: bash tests/site-contract.sh
+        run: |
+          bash tests/ci-portability-contract.sh
+          bash tests/workflow-contract.sh
+          bash tests/site-contract.sh
 
       - name: Build production site
         run: hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"

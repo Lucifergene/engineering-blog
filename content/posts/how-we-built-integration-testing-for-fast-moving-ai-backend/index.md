@@ -180,6 +180,16 @@ This two-phase approach was the key design insight. Most days, stable and dev pa
 
 The notification script computes an overall status and sends a JSON payload to a Slack Workflow Builder webhook. We chose Workflow Builder over a custom Slack app because it's simpler to set up and doesn't require app approval from the workspace admins. Figure 1 shows what the team sees in their Slack channel every morning.
 
+![A Slack notification showing a successful verification from LlamaStack Compatibility Sentinel.](sentinel-success.png)
+
+*Figure 1: This is the workflow with successful verification.*
+
+Figure 2 shows the Slack message when things break.
+
+![A Slack notification showing a failed verification from LlamaStack Compatibility Sentinel.](sentinel-failure.png)
+
+*Figure 2: This is the workflow with failed verification.*
+
 We named it LlamaStack Compatibility Sentinel. Every day, it tells us exactly where we stand.
 
 ## What the Sentinel caught in practice
